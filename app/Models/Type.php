@@ -12,4 +12,12 @@ class Type extends Model
     protected $table="type";
     protected $fillable=['name','created_at','updated_at'];
     protected $hidden=['created_at','updated_at'];
+
+
+
+
+
+    public function image_type(){
+        return $this->hasMany('App\Models\image','type','id'); //many relashion  (forenkey ,primary key)
+    }
 }

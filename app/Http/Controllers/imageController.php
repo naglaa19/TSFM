@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
+use App\Models\Gallery;
+use App\Models\Image;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class imageController extends Controller
@@ -23,7 +26,10 @@ class imageController extends Controller
      */
     public function create()
     {
-        //
+        // return Image::whereHas('type')->get();
+        $type=Type::select()->get();
+        $gallery=Gallery::select()->get();
+        return view('image')->with('type',$type)->with('gallery',$gallery);
     }
 
     /**
@@ -35,6 +41,28 @@ class imageController extends Controller
     public function store(Request $request)
     {
         //
+        $photo=$request->image;
+        $file_extention=$photo->getClientOriginalName();
+        // return $file_extention;
+        $file_name=time().$file_extention;
+        // return $file_name;
+        $path='images/';
+        $photo->move($path,$file_name);
+        // return 'okay';
+
+        $image=Image::create([
+            'name'=>$request->name,
+            'image'=>$file_name,
+            'notes'=>$request->notes,
+            'date'=>$request->date,
+            'location'=>$request->location,
+            'type'=>$request->type,
+            'cat_id'=>$request->cat
+
+
+
+        ]);
+        return redirect('image');
     }
 
     /**

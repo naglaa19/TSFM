@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\imageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,11 +14,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('image', function () {
+//     return view('image');});
 
+    Route::get('image','App\Http\Controllers\imageController@create');
+    Route::get('create','App\Http\Controllers\imageController@create')->name('storeImage');
+    Route::post('storeImage','App\Http\Controllers\imageController@store')->name('storeImage');
+
+// Auth
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
