@@ -17,6 +17,9 @@ class CreateImageTable extends Migration
             $table->id();
             $table->string('image');
             $table->string('notes');
+            $table->string('date');
+            $table->string('location');
+            $table->string('type');
             $table->string('cat_id');
             $table->timestamps();
         });
