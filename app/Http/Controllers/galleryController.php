@@ -56,8 +56,6 @@ class galleryController extends Controller
             'type'=>$request->type,
             'cat_id'=>$request->cat
 
-
-
         ]);
         return redirect('create');
     }
