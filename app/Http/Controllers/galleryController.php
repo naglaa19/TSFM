@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+// use App\Http\Requests\Image;
 use App\Models\Gallery;
+use App\Models\Image;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class galleryController extends Controller
@@ -14,7 +17,8 @@ class galleryController extends Controller
      */
     public function index()
     {
-        //
+        $gallery=Gallery::select()->get();
+        return view('category.CatDashboard',compact('gallery'));
     }
 
     /**
@@ -25,7 +29,7 @@ class galleryController extends Controller
     public function create()
     {
         //
-        // return view('image');
+        return view('category.createGallery');
 
     }
 
@@ -38,7 +42,9 @@ class galleryController extends Controller
     public function store(Request $request)
     {
         //
-        $photo=$request->image;
+        // return $request;
+
+        $photo=$request->alboum_cover;
         $file_extention=$photo->getClientOriginalName();
         // return $file_extention;
         $file_name=time().$file_extention;
@@ -48,16 +54,13 @@ class galleryController extends Controller
         // return 'okay';
 
         $image=Gallery::create([
-            'name'=>$request->name,
-            'image'=>$file_name,
-            'notes'=>$request->notes,
-            'date'=>$request->date,
-            'location'=>$request->location,
-            'type'=>$request->type,
-            'cat_id'=>$request->cat
+            'title'=>$request->title,
+            'alboum_cover'=>$file_name,
+            'description'=>$request->description
 
         ]);
-        return redirect('create');
+        return redirect('GalleryDashboard')->with('success', 'Create Successfully');
+        // return redirect('createCat');
     }
 
 
@@ -69,7 +72,12 @@ class galleryController extends Controller
      */
     public function show($id)
     {
-        //
+        // return $id;
+        // Image
+        $imgs=Image::where('cat_id',$id)->get();
+        // $type=Type::select('id','name')->where('id',$imgs->type)->get();
+        return view('image.ImageDashboard',compact('imgs'));
+
     }
 
     /**
@@ -81,6 +89,11 @@ class galleryController extends Controller
     public function edit($id)
     {
         //
+        // return $id;
+        $gallery=Gallery::find($id);
+        // return $gallery;
+        return view('category.editGallery',compact('gallery'));
+
     }
 
     /**
@@ -92,7 +105,28 @@ class galleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(!$request->alboum_cover){
+            $request->alboum_cover=$request->old_cover;
+        }
+
+        $photo=$request->alboum_cover;
+        $file_extention=$photo->getClientOriginalName();
+        // return $file_extention;
+        $file_name=time().$file_extention;
+        // return $file_name;
+        $path='images/category';
+        $photo->move($path,$file_name);
+
+
+        Gallery::find($id)->update([
+            'title'=>$request->title,
+            'alboum_cover'=>$file_name,
+            'description'=>$request->description
+
+        ]);
+        return redirect('GalleryDashboard')->with('success', 'Updated Successfully');
+
+
     }
 
     /**
@@ -103,6 +137,9 @@ class galleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // return $id;
+        Gallery::find($id)->delete();
+        return redirect('GalleryDashboard')->with('success', 'Deleted Successfully');
+
     }
 }
