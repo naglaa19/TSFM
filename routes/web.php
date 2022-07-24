@@ -26,7 +26,7 @@ Route::get('/', function () {
     Route::get('create','App\Http\Controllers\imageController@create')->name('Create');
     Route::post('storeImage','App\Http\Controllers\imageController@store')->name('storeImage');
     Route::get('edit/{id}', [imageController::class, 'edit']);
-    Route::get('Delete','App\Http\Controllers\imageController@destroy')->name('DeleteImage');
+    Route::get('Delete/{id}','App\Http\Controllers\imageController@destroy')->name('DeleteImage');
 
 // Auth
 Auth::routes();

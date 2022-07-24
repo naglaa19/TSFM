@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
 class galleryController extends Controller
@@ -60,7 +61,7 @@ class galleryController extends Controller
         ]);
         return redirect('create');
     }
-    }
+
 
     /**
      * Display the specified resource.
@@ -104,6 +105,6 @@ class galleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gall=Gallery::find($id)->destroy();
     }
 }
