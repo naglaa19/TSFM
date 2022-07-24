@@ -84,7 +84,11 @@ class imageController extends Controller
      */
     public function edit($id)
     {
-        
+        $images=Image::find($id);
+        // return $images;
+        $gallery=Gallery::find($images->cat_id);
+        $type=Type::find($images->type);
+        return view('image.editImage',compact('images','gallery','type'));
     }
 
     /**

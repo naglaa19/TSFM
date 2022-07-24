@@ -1,3 +1,3 @@
-@foreach ($images as $image)
-    {{ $image }}
-@endforeach
+{{-- @foreach ($images as $image) --}}
+    {{ $images }}
+{{-- @endforeach --}}
