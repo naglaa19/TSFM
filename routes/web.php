@@ -22,9 +22,11 @@ Route::get('/', function () {
 // Route::get('image', function () {
 //     return view('image');});
 
-    Route::get('image','App\Http\Controllers\imageController@create');
-    Route::get('create','App\Http\Controllers\imageController@create')->name('storeImage');
+    // Route::get('image','App\Http\Controllers\imageController@create');
+    Route::get('create','App\Http\Controllers\imageController@create')->name('Create');
     Route::post('storeImage','App\Http\Controllers\imageController@store')->name('storeImage');
+    Route::get('edit/{id}', [imageController::class, 'edit']);
+    Route::get('Delete','App\Http\Controllers\imageController@destroy')->name('DeleteImage');
 
 // Auth
 Auth::routes();

@@ -29,7 +29,7 @@ class imageController extends Controller
         // return Image::whereHas('type')->get();
         $type=Type::select()->get();
         $gallery=Gallery::select()->get();
-        return view('image')->with('type',$type)->with('gallery',$gallery);
+        return view('image.image')->with('type',$type)->with('gallery',$gallery);
     }
 
     /**
@@ -62,7 +62,7 @@ class imageController extends Controller
 
 
         ]);
-        return redirect('image');
+        return redirect('create');
     }
 
     /**
@@ -84,7 +84,7 @@ class imageController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

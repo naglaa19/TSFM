@@ -37,6 +37,29 @@ class galleryController extends Controller
     public function store(Request $request)
     {
         //
+        $photo=$request->image;
+        $file_extention=$photo->getClientOriginalName();
+        // return $file_extention;
+        $file_name=time().$file_extention;
+        // return $file_name;
+        $path='images/category';
+        $photo->move($path,$file_name);
+        // return 'okay';
+
+        $image=Gallery::create([
+            'name'=>$request->name,
+            'image'=>$file_name,
+            'notes'=>$request->notes,
+            'date'=>$request->date,
+            'location'=>$request->location,
+            'type'=>$request->type,
+            'cat_id'=>$request->cat
+
+
+
+        ]);
+        return redirect('create');
+    }
     }
 
     /**

@@ -13,7 +13,7 @@
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Date</label>
-    <input type="text" class="form-control"name="date" id="">
+    <input type="date" class="form-control"name="date" id="">
   </div>
 <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Location</label>

@@ -14,6 +14,23 @@ class Image extends Model
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// select(name,)
+
+
     public function gallery(){
         return $this ->belongsTo('App\Models\Gallery','id');     #(,'primary key')
 
