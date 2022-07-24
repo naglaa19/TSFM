@@ -46,7 +46,7 @@ class imageController extends Controller
         // return $file_extention;
         $file_name=time().$file_extention;
         // return $file_name;
-        $path='images/';
+        $path='images/img';
         $photo->move($path,$file_name);
         // return 'okay';
 

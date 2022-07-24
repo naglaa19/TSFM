@@ -37,11 +37,16 @@
 
     <div class="mb-3">
         <label for="exampleInputPassword1"  class="form-label">Type</label>
-        <select name="type" class="form-control">
+        {{-- <select name="type" class="form-control">
             <option value="{{$images->id}}">{{ $type->name}}</option>
             <option value="{{$type->id}}">{{ $images->type}}</option>
 
-        </select>
+        </select> --}}
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Image</label>
+            <input type="text" name="type" class="form-control" id="">
+        </div> <br>
+
     </div> <br>
 
     <div class="mb-3">
