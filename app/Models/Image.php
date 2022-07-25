@@ -28,8 +28,11 @@ class Image extends Model
 
 
 
-// select(name,)
+    // public function scopeImage($q){
 
+    //     return $q->where('type',1);
+
+    // }
 
     public function gallery(){
         return $this ->belongsTo('App\Models\Gallery','id');     #(,'primary key')

@@ -16,7 +16,8 @@ class imageController extends Controller
      */
     public function index()
     {
-        //
+        $images=Image::select()->get();
+        return view('image.allImage',compact('images'));
     }
 
     /**
@@ -62,7 +63,7 @@ class imageController extends Controller
 
 
         ]);
-        return redirect('create');
+        return redirect('imageDashboard')->with('success', 'Create Successfully');
     }
 
     /**
@@ -101,6 +102,8 @@ class imageController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+
     }
 
     /**
