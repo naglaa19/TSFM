@@ -92,7 +92,7 @@ class galleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       Gallery::query();
     }
 
     /**
@@ -103,6 +103,15 @@ class galleryController extends Controller
      */
     public function destroy($id)
     {
-        $gall=Gallery::find($id)->destroy();
+
+      $result = Gallery::destroy($id);
+    if($result==1)
+    {
+    echo 'succesful';
+    }
+    else if($result==0)
+    {
+        echo 'not found';
+    }
     }
 }

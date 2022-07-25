@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\imageController;
+use App\Http\Controllers\galleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,8 @@ Route::get('/', function () {
     Route::post('storeImage','App\Http\Controllers\imageController@store')->name('storeImage');
     Route::get('edit/{id}', [imageController::class, 'edit']);
     Route::get('Delete/{id}','App\Http\Controllers\imageController@destroy')->name('DeleteImage');
-
+    Route::get('destroyGallery/{id}','App\Http\Controllers\galleryController@destroy');
+    Route::get('destroyimage/{id}','App\Http\Controllers\imageController@destroy');
 // Auth
 Auth::routes();
 
